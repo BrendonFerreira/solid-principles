@@ -4,7 +4,7 @@ class PeerAuthentication {
         this.credentials = credentials
     }
     verifyCredentials(credentials) {
-        return this.credentials == credentials;    
+        return this.credentials == credentials || throw new Error("Invalid credentials");    
     }   
 }
 
@@ -16,8 +16,6 @@ class PeerCommunication {
     sendMessage(message, peer, credentials) {
         if( peer.auth.verifyCredentials(credentials) ){
             peer.receiveMessage(message)
-        } else {
-            throw new Error("Credentials is not valid")
         }
     }   
     receiveMessage(message) {
